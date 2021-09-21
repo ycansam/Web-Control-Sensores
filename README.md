@@ -1,18 +1,9 @@
 # **API REST NODE JS** Mostrar datos de sensores
 ***
-###### La pagina web recibira los datos enviados por la aplicacion movil, que estaran almacenados en una base de datos.
+##### La pagina web recibira los datos enviados por la aplicacion movil, que estaran almacenados en una base de datos.
 ## Instalacion
 Abrir una consola de comandos en la carpeta src y escribir: 
-`npm i express nodemon body-parser mysql`
-
-Crear un archivo ***app.js*** y escribir: 
-```javascript
-const express = require('express');
-const mysql = require('mysql');
-const bodyParser = require('body-parser');
-const PORT = process.env.PORT || 3050;
-const app = express();
-```
+`npm i express nodemon body-parser mysql cors`
 ##### Conexion a la base de datos
 #
 ```javascript
@@ -24,18 +15,26 @@ const connection = mysql.createConnection({
     password: 'tu contraseña',
     database: 'tu tabla' 
 });
-// ruta de acceso
-app.get('/', (req, res) => {
-        res.send('tu mensaje de prueba');
-    })
-    // Check Connection
-connection.connect(error => {
-    if (error) throw error;
-    console.log("Database server running!");
-})
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 ```
-Servidor Instalado.
+### Ejecutar el servidor:
+1. Abrir la conexion MYSQL + Apache.
+ - `npm run dev`
+### Iniciar la web
+1. En un navegador web abrir una nueva pestaña
+ - Si es localhost; introducit en la urL: `http://localhost:3050` + `/funcionPublica`
+
+## Funciones publicas
+##### Obtiene datos de todos los sensores ***GET***
+```javascript
+app.get('/obtenerSensores', cors(), (req, res) => {
+    // code
+})
+```
+##### Añade datos del sensor ***POST***
+```javascript
+app.post('/anyadirSensor', (req, res) => {
+    // code
+});
+```
 
 

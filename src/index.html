@@ -10,7 +10,9 @@
 
 <body>
     <header>Sensores</header>
-    <ul id="lista-sensores" style="display:flex; flex-direction: column;">
+    <!-- lista donde se van a mostrar todos los sensores -->
+    <ul id="lista-sensores" style="display:flex; flex-direction: column; overflow: scroll;">
+        <!-- Cabezeras -->
         <li id="sensor-" style="display:flex;">
             <p id="id-sensor-" style="margin-right:30px; width: 25%;">ID SENSOR</p>
             <p class="nombre-sensor" style="margin-right:30px;width: 25%;">NOMBRE SENSOR</p>
@@ -22,46 +24,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $(function() {
-            $.ajax({
-                type: "GET",
-                url: "http://localhost:3050/obtenerSensores",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                dataType: "json",
-                data: {},
-                success: function(arraySensores) {
-                    arraySensores.forEach(function(sensor) {
-                        console.log(sensor);
-                        var html = '<li id="sensor-" style="display:flex;">' +
-                            '            <p id="id-sensor-" style="margin-right:30px; width: 25%;">' + sensor.id_sensor + '</p>' +
-                            '            <p class="nombre-sensor" style="margin-right:30px;width: 25%;">' + sensor.nombre + '</p>' +
-                            '            <p class="temperatura" style="margin-right:30px;width: 25%;">' + sensor.temperatura + '</p>' +
-                            '            <p class="dioxido" style="margin-right:30px;width: 25%;">' + sensor.dioxido_carbono + '</p>' +
-                            '        </li>';
-                        $('#lista-sensores').append(html);
-                    });
-                    // sensor => console.log(sensor)
-                    // console.log(arraySensores);
-                },
-                error: function() {
-                    console.log("error");
-                },
-                crossDomain: true
-            })
+        $.ajax({
+            // hago una peticion Get a la api para obtener la lista de sensores
+            type: "GET",
+            url: "http://localhost:3050/obtenerSensores",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            dataType: "json",
+            data: {},
+            success: function(arraySensores) {
+                // para cada sensor le creo un li para que aparezca en el html
+                arraySensores.forEach(function(sensor) {
+                    console.log(sensor);
+                    var html = '<li id="sensor-" style="display:flex;">' +
+                        '            <p id="id-sensor-" style="margin-right:30px; width: 25%;">' + sensor.id_sensor + '</p>' +
+                        '            <p class="nombre-sensor" style="margin-right:30px;width: 25%;">' + sensor.nombre + '</p>' +
+                        '            <p class="temperatura" style="margin-right:30px;width: 25%;">' + sensor.temperatura + '</p>' +
+                        '            <p class="dioxido" style="margin-right:30px;width: 25%;">' + sensor.dioxido_carbono + '</p>' +
+                        '        </li>';
+                    $('#lista-sensores').append(html);
+                });
+
+            },
+            error: function() {
+                console.log("error");
+            },
+            crossDomain: true
         })
-        // $(".alert").alert('close')
-        // $("#btn-entrar-form").on("click", function() {
-        //     event.preventDefault();
-        //     var formData = $('#formEntrar').serialize();
-        //     var alertina =
-        //         '<div class="alert alerta fade show" role="alert">' +
-        //         '	<button  class="close" data-dismiss="alert" aria-label="Close">' +
-        //         '		<span aria-hidden="true">&times;</span>' +
-        //         '	</button>' +
-        //         '	<h4 class="alert-heading">Error</h4>' +
-        //         '	Usuario o contraseña incorrectos.' +
-        //         '</div>';
+    })
 </script>
 
 </html>
