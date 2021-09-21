@@ -10,6 +10,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
+
 var corsOptions = {
         origin: 'http://localhost:3050/',
         optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -37,7 +38,7 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 // metodos API
 
 // obtiene todos los sensores
-app.get('/obtenerSensores', (req, res) => {
+app.get('/obtenerSensores', cors(), (req, res) => {
     const sql = 'SELECT * FROM sensores';
     // res.send('Lista de todos los Sensores')
     connection.query(sql, (error, results) => {
