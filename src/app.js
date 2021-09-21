@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
+var cors = require('cors');
 
 const bodyParser = require('body-parser');
 
@@ -8,7 +9,12 @@ const PORT = process.env.PORT || 3050;
 const app = express();
 
 app.use(bodyParser.json());
-// Mysql conexion
+app.use(cors());
+var corsOptions = {
+        origin: 'http://localhost:3050/',
+        optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    }
+    // Mysql conexion
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -17,9 +23,9 @@ const connection = mysql.createConnection({
 });
 // ruta de acceso
 app.get('/', (req, res) => {
-        res.send('viva españa');
-    })
-    // Check Connection
+    res.send('viva españa');
+});
+// Check Connection
 connection.connect(error => {
         if (error) throw error;
         console.log("Database server running!");
@@ -70,11 +76,11 @@ app.post('/anyadirSensor', (req, res) => {
 */
 
 // actualiza el sensor
-app.put('/actualizarSensor/:id', (req, res) => {
-    res.send('Actualizar Sensor');
-});
+// app.put('/actualizarSensor/:id', (req, res) => {
+//     res.send('Actualizar Sensor');
+// });
 
-// eliminar sensor
-app.delete('/eliminarSensor/:id', (req, res) => {
-    res.send('Eliminar Sensor');
-})
+// // eliminar sensor
+// app.delete('/eliminarSensor/:id', (req, res) => {
+//     res.send('Eliminar Sensor');
+// })

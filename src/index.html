@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Sensores</title>
+</head>
+
+<body>
+    <header>Sensores</header>
+    <ul id="lista-sensores">
+
+    </ul>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(function() {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:3050/obtenerSensores",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                dataType: "json",
+                data: {},
+                success: function(result) {
+                    console.log(result);
+                },
+                error: function() {
+                    console.log("error");
+                },
+                crossDomain: true
+            })
+        })
+        // $(".alert").alert('close')
+        // $("#btn-entrar-form").on("click", function() {
+        //     event.preventDefault();
+        //     var formData = $('#formEntrar').serialize();
+        //     var alertina =
+        //         '<div class="alert alerta fade show" role="alert">' +
+        //         '	<button  class="close" data-dismiss="alert" aria-label="Close">' +
+        //         '		<span aria-hidden="true">&times;</span>' +
+        //         '	</button>' +
+        //         '	<h4 class="alert-heading">Error</h4>' +
+        //         '	Usuario o contraseña incorrectos.' +
+        //         '</div>';
+</script>
+
+</html>
