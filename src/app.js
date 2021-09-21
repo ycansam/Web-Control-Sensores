@@ -33,21 +33,41 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 // obtiene todos los sensores
 app.get('/obtenerSensores', (req, res) => {
     const sql = 'SELECT * FROM sensores';
+    // res.send('Lista de todos los Sensores')
     connection.query(sql, (error, results) => {
-            if (error) throw error;
-            if (results.length > 0) {
-                res.json(results);
-            } else {
-                res.send('No hay resultados');
-            }
-        })
-        // res.send('Lista de todos los Sensores')
+        if (error) throw error;
+        if (results.length > 0) {
+            res.json(results);
+        } else {
+            res.send('No hay resultados');
+        }
+    })
 })
 
 // añade los sensores
-app.post('/añadirSensor', (req, res) => {
-    res.send('Añadir Sensor');
-})
+app.post('/anyadirSensor', (req, res) => {
+    const sql = 'INSERT INTO sensores SET ?';
+    const sensorObj = {
+        id_sensor: req.body.id_sensor,
+        nombre: req.body.nombre,
+        temperatura: req.body.temperatura,
+        dioxido_carbono: req.body.dioxido_carbono
+    }
+    connection.query(sql, sensorObj, err => {
+        if (err) throw err;
+        res.send('Sensor Creado');
+    })
+
+});
+// tip
+/*Sintaxis Añadir Sensor desde la web 
+    {
+        "idSensor": "id",
+        "nombre": "nombreSensor",
+        "temperatura": "temperatura",
+        "dioxidoCarbono": "dioxidoCarbono"
+    }
+*/
 
 // actualiza el sensor
 app.put('/actualizarSensor/:id', (req, res) => {
