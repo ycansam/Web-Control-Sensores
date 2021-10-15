@@ -1,22 +1,30 @@
 var Medicion = require('../modelos/Medicion.js');
+
 module.exports = {
+    /**
+     * Obtiene todas las mediciones de la base de datos
+     * @param {*} req 
+     * @param {*} res 
+     */
     obtenerTodasMediciones: function (req, res) {
         const connection = req.con;
-        // obtiene todos los sensores
-        const sql = 'SELECT * FROM sensores';
-        connection.query(sql, (error, results) => {
-            if (error) throw error;
-            if (results.length > 0) {
-                res.json(results);
-            } else {
-                res.send('No hay resultados');
-            }
-        })
+        Medicion.obtenerTodasLasMediciones(connection, res);
     },
 
+    /**
+     * Añade una medicion especifica a la base de datos
+     * @param {*} req 
+     * @param {*} res 
+    */
     anyadirMedicion: function (req, res) {
-        medicion.create(req.con, req.body, function (err) {
-            res.redirect("/biodata")
-        })
+        const connection = req.con;
+        // añade los sensores
+        const medicion = new Medicion(
+            req.body.id_sensor,
+            req.body.nombre,
+            req.body.temperatura,
+            req.body.dioxido_carbono
+        )
+        Medicion.anyadirMedicion(medicion, connection, res);
     }
 }
