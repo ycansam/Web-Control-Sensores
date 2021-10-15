@@ -36,7 +36,6 @@
             success: function(arraySensores) {
                 // para cada sensor le creo un li para que aparezca en el html
                 arraySensores.forEach(function(sensor) {
-                    console.log(sensor);
                     var html = '<li id="sensor-" style="display:flex;">' +
                         '            <p id="id-sensor-" style="margin-right:30px; width: 25%;">' + sensor.id_sensor + '</p>' +
                         '            <p class="nombre-sensor" style="margin-right:30px;width: 25%;">' + sensor.nombre + '</p>' +
@@ -45,7 +44,6 @@
                         '        </li>';
                     $('#lista-sensores').append(html);
                 });
-
             },
             error: function() {
                 console.log("error");

@@ -10,13 +10,21 @@ module.exports = class Conexion {
         this.database = database;
     }
 
-    conectar() {
+    conectar(app) {
         const connection = mysql.createConnection({
             host: this.host,
             user: this.user,
             password: this.password,
             database: this.database
         });
+        connection.connect(error => {
+            if (error) throw error;
+            console.log("Database server running!");
+        })
+        app.use(function (req, res, next) {
+            req.con = connection
+            next()
+        })
         return connection;
     }
 };
