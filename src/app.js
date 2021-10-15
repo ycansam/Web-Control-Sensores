@@ -1,7 +1,16 @@
+// --------------------------------------------------------------
+//
+// Yeray Candel Sampedro
+// 2021 - 10 - 27
+//
+// --------------------------------------------------------------
+
 const express = require('express');
 const mysql = require('mysql');
 var cors = require('cors');
-
+// modelos
+const Medicion = require('./modelos/Medicion.js').default;
+const Conexion = require('./modelos/Conexion.js');
 const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3050;
@@ -12,26 +21,23 @@ app.use(bodyParser.json());
 app.use(cors());
 
 var corsOptions = {
-        origin: 'http://localhost:3050/',
-        optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-    }
-    // Mysql conexion
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'control-sensores'
-});
+    origin: 'http://localhost:3050/',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+// Mysql conexion
+var conexion = new Conexion('localhost','root', '', 'control-sensores');
+const connection = conexion.conectar();
+
 // ruta de acceso
 app.get('/', (req, res) => {
-    res.send('viva españa');
+    res.send('Funciona!');
 });
 // Check Connection
 connection.connect(error => {
-        if (error) throw error;
-        console.log("Database server running!");
-    })
-    // escuchando al puerto
+    if (error) throw error;
+    console.log("Database server running!");
+})
+// escuchando al puerto
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 
@@ -60,6 +66,13 @@ app.post('/anyadirSensor', (req, res) => {
         temperatura: req.body.temperatura,
         dioxido_carbono: req.body.dioxido_carbono
     }
+    const medicion = new Medicion(
+        req.body.id_sensor,
+        req.body.nombre,
+        req.body.temperatura,
+        req.body.dioxido_carbono
+    )
+
     connection.query(sql, sensorObj, err => {
         if (err) throw err;
         res.send('Sensor Creado');
@@ -67,7 +80,7 @@ app.post('/anyadirSensor', (req, res) => {
 
 });
 // tip
-/*Sintaxis Añadir Sensor desde la web 
+/*Sintaxis Añadir Sensor desde la web
     {
         "idSensor": "id",
         "nombre": "nombreSensor",
