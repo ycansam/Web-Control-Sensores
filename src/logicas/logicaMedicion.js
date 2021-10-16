@@ -7,6 +7,7 @@ module.exports = class logicaMedicion {
     constructor() {}
     /**
      * Obtiene todas las mediciones de la base de datos
+     * @return results Devuelve el array de mediciones obtenido de la base de datos
      */
     async obtenerTodasLasMediciones() {
         const sql = 'SELECT * FROM sensores';
@@ -25,6 +26,7 @@ module.exports = class logicaMedicion {
     /**
      *  Añade una medicion especifica a la base de datos
      * @param {*} medicion medicion a añadir a la base de datos
+     * @return Bool | Error devuelve true si se ha añadido y si no el error
      */
     anyadirMedicion(medicion) {
         const sql = 'INSERT INTO sensores SET ?';

@@ -19,7 +19,6 @@ module.exports = {
             console.log(reason);
         })
     },
-
     /**
      * Añade una medicion especifica a la base de datos
      * @param {*} req 
