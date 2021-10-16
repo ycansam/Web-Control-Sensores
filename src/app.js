@@ -11,17 +11,12 @@ const app = express();
 var cors = require('cors');
 const bodyParser = require('body-parser');
 
-// modelos
-const Conexion = require('./modelos/Conexion.js');
-
 // usos
 app.use(cors());
 app.use(bodyParser.json());
 
-// Mysql conexion
-var conexion = new Conexion('localhost', 'root', '', 'control-sensores');
-// hace conexion a la base de datos a un puerto elegido
-const connection = conexion.conectar(app, 3050);
+const PORT = process.env.PORT || 3050;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // connecting route to database
 const medicionRouter = require("./rutas/RouterMedicion.js")

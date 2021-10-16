@@ -3,19 +3,12 @@ const {
 } = require("body-parser");
 const con = require('../conexion');
 
-module.exports = class Medicion {
-    // constructor de la clase
-    constructor(idSensor, nombre, temperatura, dioxidoCarbono) {
-        this.idSensor = idSensor;
-        this.nombre = nombre;
-        this.temperatura = temperatura;
-        this.dioxidoCarbono = dioxidoCarbono;
-    }
+module.exports = class logicaMedicion {
+    constructor() {}
     /**
      * Obtiene todas las mediciones de la base de datos
      */
-    static async obtenerTodasLasMediciones() {
-
+    async obtenerTodasLasMediciones() {
         const sql = 'SELECT * FROM sensores';
 
         return new Promise((resolve, reject) => {
@@ -33,7 +26,7 @@ module.exports = class Medicion {
      *  Añade una medicion especifica a la base de datos
      * @param {*} medicion medicion a añadir a la base de datos
      */
-    static anyadirMedicion(medicion) {
+    anyadirMedicion(medicion) {
         const sql = 'INSERT INTO sensores SET ?';
         const sensorObj = {
             id_sensor: medicion.idSensor,
@@ -43,7 +36,7 @@ module.exports = class Medicion {
         }
         return new Promise((resolve, reject) => {
             con.query(sql, sensorObj, err => {
-                if (err) reject(err) ;
+                if (err) reject(err);
                 resolve(true)
             })
         })
