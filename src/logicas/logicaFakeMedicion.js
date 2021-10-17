@@ -23,10 +23,9 @@ $(function obtenerTodasMediciones() {
 
 function mostrarMedicion(medicion) {
     var html = '<li id="sensor-" style="display:flex;">' +
-        '            <p id="id-sensor-" style="margin-right:30px; width: 25%;">' + medicion.id_sensor + '</p>' +
-        '            <p class="nombre-sensor" style="margin-right:30px;width: 25%;">' + medicion.nombre + '</p>' +
-        '            <p class="temperatura" style="margin-right:30px;width: 25%;">' + medicion.temperatura + '</p>' +
-        '            <p class="dioxido" style="margin-right:30px;width: 25%;">' + medicion.dioxido_carbono + '</p>' +
+        '            <p id="id-sensor-" style="margin-right:auto; width: 25%;">' + medicion.id_sensor + '</p>' +
+        '            <p class="nombre-sensor" style="margin-right:auto;width: 25%;">' + medicion.nombre + '</p>' +
+        '            <p class="dioxido" style="margin-right:auto;width: 25%;">' + medicion.dioxido_carbono + '</p>' +
         '        </li>';
     $('#lista-sensores').append(html);
 }

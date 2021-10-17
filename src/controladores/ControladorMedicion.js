@@ -29,7 +29,6 @@ module.exports = {
         const medicion = new Medicion(
             req.body.id_sensor,
             req.body.nombre,
-            req.body.temperatura,
             req.body.dioxido_carbono
         )
         const added = logicaMediciones.anyadirMedicion(medicion);

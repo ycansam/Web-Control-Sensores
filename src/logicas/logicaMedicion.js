@@ -10,7 +10,7 @@ module.exports = class logicaMedicion {
      * @return results Devuelve el array de mediciones obtenido de la base de datos
      */
     async obtenerTodasLasMediciones() {
-        const sql = 'SELECT * FROM sensores';
+        const sql = 'SELECT * FROM mediciones';
 
         return new Promise((resolve, reject) => {
             con.query(sql, (error, results) => {
@@ -29,11 +29,10 @@ module.exports = class logicaMedicion {
      * @return Bool | Error devuelve true si se ha añadido y si no el error
      */
     anyadirMedicion(medicion) {
-        const sql = 'INSERT INTO sensores SET ?';
+        const sql = 'INSERT INTO mediciones SET ?';
         const sensorObj = {
             id_sensor: medicion.idSensor,
             nombre: medicion.nombre,
-            temperatura: medicion.temperatura,
             dioxido_carbono: medicion.dioxidoCarbono
         }
         return new Promise((resolve, reject) => {
