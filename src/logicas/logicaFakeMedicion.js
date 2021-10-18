@@ -26,6 +26,7 @@ function mostrarMedicion(medicion) {
         '            <p id="id-sensor-" style="margin-right:auto; width: 25%;">' + medicion.id_sensor + '</p>' +
         '            <p class="nombre-sensor" style="margin-right:auto;width: 25%;">' + medicion.nombre + '</p>' +
         '            <p class="dioxido" style="margin-right:auto;width: 25%;">' + medicion.dioxido_carbono + '</p>' +
+        '            <p class="fecha" style="margin-right:auto;width: 25%;">' + medicion.fecha + '</p>' +
         '        </li>';
     $('#lista-sensores').append(html);
 }

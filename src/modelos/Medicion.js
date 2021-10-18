@@ -9,5 +9,6 @@ module.exports = class Medicion {
         this.idSensor = idSensor;
         this.nombre = nombre;
         this.dioxidoCarbono = dioxidoCarbono;
+        this.fecha = null;
     }
 }
