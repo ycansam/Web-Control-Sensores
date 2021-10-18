@@ -41,7 +41,7 @@ module.exports = class logicaMedicion {
     anyadirMedicion(medicion) {
         const sql = 'INSERT INTO mediciones SET ?';
         const sensorObj = {
-            id_sensor: medicion.idSensor,
+            direccion_sensor: medicion.direccion_sensor,
             nombre: medicion.nombre,
             dioxido_carbono: medicion.dioxidoCarbono
         }

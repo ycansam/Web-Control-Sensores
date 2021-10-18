@@ -17,8 +17,8 @@ const con = require('../conexion');
 
 module.exports = class Medicion {
     // constructor de la clase
-    constructor(idSensor, nombre, dioxidoCarbono) {
-        this.idSensor = idSensor;
+    constructor(direccionSensor, nombre, dioxidoCarbono) {
+        this.direccion_sensor = direccionSensor;
         this.nombre = nombre;
         this.dioxidoCarbono = dioxidoCarbono;
         this.fecha = null;

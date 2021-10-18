@@ -38,7 +38,7 @@ module.exports = {
     anyadirMedicion: function (req, res) {
         // añade los sensores
         const medicion = new Medicion(
-            req.body.id_sensor,
+            req.body.direccion_sensor,
             req.body.nombre,
             req.body.dioxido_carbono
         )
