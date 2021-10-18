@@ -1,3 +1,14 @@
+// Javascript
+
+// --------------------------------------------------------------
+//
+// Yeray Candel Sampedro
+// 2021 - 10 - 18
+//
+// Logica Fake
+// --------------------------------------------------------------
+
+
 $(function obtenerTodasMediciones() {
     $.ajax({
         // hago una peticion Get a la api para obtener la lista de sensores

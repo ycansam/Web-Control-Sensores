@@ -1,3 +1,14 @@
+// Javascript
+
+// --------------------------------------------------------------
+//
+// Yeray Candel Sampedro
+// 2021 - 10 - 18
+//
+// Maneja las rutas de acceso
+// --------------------------------------------------------------
+
+
 const express = require("express")
 const router = express.Router()
 const controladorMedicion = require("../controladores/ControladorMedicion.js")
@@ -9,14 +20,13 @@ router.get("/", cors(), (req, res) => {
     res.send('Funciona!');
 })
 
-// direccion a obtener todas las mediciones de la tabla
+// http://localhost:5500/obtenerTodasMediciones direccion a obtener todas las mediciones de la tabla
 router.get("/obtenerTodasMediciones", cors(), controladorMedicion.obtenerTodasMediciones);
 
 /* Sintaxis Añadir Sensor desde la web
 * {
    "id_sensor": "idSensor",
    "nombre": "nombreSensor",
-   "temperatura": "temperatura",
    "dioxido_carbono": "dioxidoCarbono"
 * }
    Efectura en formato JSON en metodo post

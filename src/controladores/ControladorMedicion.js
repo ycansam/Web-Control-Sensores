@@ -1,3 +1,14 @@
+// Javascript
+
+// --------------------------------------------------------------
+//
+// Yeray Candel Sampedro
+// 2021 - 10 - 18
+//
+// Controla las mediciones entre la logica verdadera y la logica fake
+// --------------------------------------------------------------
+
+
 var Medicion = require('../modelos/Medicion.js');
 var logicaMedicion = require('../logicas/logicaMedicion');
 
