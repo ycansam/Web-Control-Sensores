@@ -25,7 +25,7 @@ router.get("/obtenerTodasMediciones", cors(), controladorMedicion.obtenerTodasMe
 
 /* Sintaxis Añadir Sensor desde la web
 * {
-   "id_sensor": "idSensor",
+   "direccion_sensor": "Direccion Sensor",
    "nombre": "nombreSensor",
    "dioxido_carbono": "dioxidoCarbono"
 * }

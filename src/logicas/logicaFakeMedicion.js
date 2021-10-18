@@ -8,7 +8,9 @@
 // Logica Fake
 // --------------------------------------------------------------
 
-
+/**
+ * Obtiene todas las mediciones
+ */
 $(function obtenerTodasMediciones() {
     $.ajax({
         // hago una peticion Get a la api para obtener la lista de sensores
@@ -32,6 +34,11 @@ $(function obtenerTodasMediciones() {
     })
 })
 
+/**
+ * Añade una medicion en el html
+ * @param {*} medicion 
+ * 
+ */
 function mostrarMedicion(medicion) {
     var html = '<li id="sensor-" style="display:flex;">' +
         '            <p id="id-sensor-" style="margin-right:auto; width: 25%;">' + medicion.direccion_sensor + '</p>' +
